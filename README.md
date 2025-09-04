@@ -57,6 +57,7 @@ They put them in a shared library/toolbox so the whole team can use them.
 
 The folders organization in a professional environment looks like this:
 
+```tsx
 src/
   components/
     Button/
@@ -68,6 +69,7 @@ src/
       Input.test.tsx
     Navbar/
       Navbar.tsx
+```
 
 All buttons go in the Buttons drawer.
 All input fields go in the Forms drawer.
