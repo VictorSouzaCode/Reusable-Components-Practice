@@ -41,7 +41,9 @@ const Button = ({ label, onClick }: ButtonProps) => {
 // Reuse the button in different places:
 <Button label="Save" onClick={handleSave} />
 <Button label="Cancel" onClick={handleCancel} />
-<Button label="Delete" onClick={handleDelete} />
+<Button label="Delete" onClick={handleDelete} />```
+
+---
 
 Exercise:
  Build a Button component:
