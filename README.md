@@ -1,4 +1,4 @@
-# Reusable Components Practice
+# Reusable Components lessons, examples and exercises.
 
 A simple repo to store my reusable components practice and lessons
 
