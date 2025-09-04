@@ -1,69 +1,58 @@
-# React + TypeScript + Vite
+# Reusable Components Practice
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple repo to store my reusable components practice and lessons
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Theory:
+ What What makes a component reusable? (props, slots/children, composition over inheritance)
 
-## Expanding the ESLint configuration
+ Differences between presentational and container components.
+ Prop drilling vs context.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. One Job Only – Each block does one simple thing. For example, a Lego door only opens and closes. In React, a button component only looks and acts like a button.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. Looks the Same Everywhere – No matter where you put the Lego door, it still works as a door. Similarly, if you use your button component on different pages, it still looks and acts the same.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+3. Customizable – Just like you can put stickers on your Lego door 🚪 or change its color, in React you can pass props to change the text or style of your button (e.g., "Save", "Cancel", "Delete").
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. Reusable – Instead of making a new door from scratch every time, you reuse the same Lego door. Same with code—you don’t rewrite the button every time, you just use your button component.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+5. Shared Toolbox – In a professional team, all these Lego blocks (components) are put into a shared toolbox (like a folder, library, or design system). This way, everyone on the team can grab the same block and use it, keeping everything consistent.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Example in React (our Lego block = a button):
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```tsx
+type ButtonProps = {
+  label: string;
+  onClick: () => void;
+};
+
+const Button = ({ label, onClick }: ButtonProps) => {
+  return (
+    <button
+      onClick={onClick}
+      className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600"
+    >
+      {label}
+    </button>
+  );
+};
+
+// Reuse the button in different places:
+<Button label="Save" onClick={handleSave} />
+<Button label="Cancel" onClick={handleCancel} />
+<Button label="Delete" onClick={handleDelete} />
+
+Exercise:
+ Build a Button component:
+
+ Variants (primary, secondary, danger)
+
+ Sizes (sm, md, lg)
+
+ Disabled state
+
+Mini-Project:
+ Build a Card component with slot-like children (header, body, footer).
+
+ Use it with different content → blog card, product card, profile card.
