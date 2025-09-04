@@ -44,6 +44,37 @@ const Button = ({ label, onClick }: ButtonProps) => {
 <Button label="Delete" onClick={handleDelete} />
 ```
 
+
+Professionals treat reusable components like Lego:
+
+They make them small and focused.
+
+They make them customizable.
+
+They put them in a shared library/toolbox so the whole team can use them.
+
+---
+
+The folders organization in a professional environment looks like this:
+
+src/
+  components/
+    Button/
+      Button.tsx
+      Button.test.tsx
+      Button.css
+    Input/
+      Input.tsx
+      Input.test.tsx
+    Navbar/
+      Navbar.tsx
+
+All buttons go in the Buttons drawer.
+All input fields go in the Forms drawer.
+All navigation stuff (menus, navbars) go in the Navigation drawer.
+
+This way, when someone needs a button, they know exactly where to find it.
+
 ---
 
 Exercise:
