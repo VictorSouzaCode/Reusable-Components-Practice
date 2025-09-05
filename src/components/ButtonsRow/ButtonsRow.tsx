@@ -1,7 +1,8 @@
 import Button from "../Button/Button"
+import type { Counts } from "../../App"
 
 type ButtonRowProps = {
-    handleClick: () => void,
+    handleClick: (variant : keyof Counts) => void,
 }
 
 const ButtonsRow = ({
@@ -22,11 +23,13 @@ const ButtonsRow = ({
         Primary
       </Button>
 
-      <Button variant="secondary" size="md" borders='medium'>
+      <Button variant="secondary" size="md" borders='medium'
+      onClick={handleClick}>
         Secondary
       </Button>
 
-      <Button variant="danger" size="lg" borders="heavy">
+      <Button variant="danger" size="lg" borders="heavy"
+      onClick={handleClick}>
         Danger
       </Button>
     </div>

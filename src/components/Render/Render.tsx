@@ -1,25 +1,30 @@
+import type { Counts } from "../../App"
 
 type RenderProps = {
-    count: number,
+    counts: Counts,
 }
 
 
 const Render = ({
-    count,
+    counts,
 }:RenderProps) => {
 
   return (
     <div style={{
-      display: "flex", 
+      display: "flex",
+      flexDirection: 'column',
       gap: "10px",
-      width: "100px",
-      minHeight: '100px',
+      width: "300px",
+      minHeight: '300px',
       justifyContent: "center",
       alignItems: "center",
       border: '2px solid green',
       borderRadius: '50%'
     }}>
-        {count}
+      <p>Primary Clicks: {counts.primary}</p>
+      <p>Secondary Clicks: {counts.secondary}</p>
+      <p>Danger Clicks: {counts.danger}</p>
+      <p>Total: {counts.primary + counts.secondary + counts.danger}</p>
     </div>
   )
 }

@@ -1,11 +1,12 @@
 import "./button.css";
+import type { Counts } from "../../App";
 
 type ButtonProps = {
   variant?: "primary" | "secondary" | "danger",
   size?: "sm" | "md" | "lg",
   borders?: "light" | "medium" | "heavy",
   disabled?: boolean,
-  onClick?: () => void,
+  onClick?: (variant : keyof Counts) => void,
   children: React.ReactNode,
 }
 
@@ -22,7 +23,7 @@ const button = ({
   const className = `button ${variant} ${size} ${borders}`;
 
   return (
-    <button className={className} onClick={onClick} disabled={disabled}>
+    <button className={className} onClick={() => onClick?.(variant)} disabled={disabled}>
       {children}
     </button>
   )
