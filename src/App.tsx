@@ -1,17 +1,14 @@
 import { useState } from 'react'
-import ButtonsRow from './useMapForButtons/ButtonsRow/ButtonsRow'
-import Render from './useMapForButtons/Render/Render'
+import ButtonsRow from './newResetButton/ButtonsRow/ButtonsRow'
+import Render from './newResetButton/Render/Render'
 
+// i want a way to reset all counts to 0. Instead of making a whole new handler, i can handle "reset" as a special case.
 
 export type Counts = {
   primary: number,
   secondary: number,
   danger: number,
 }
-
-// Later Difining button config  in an array and mapping it instead of hardcoding each <Button />
-
-// add a reset button (that sets all counts back to 0) using this same pattern, without messing the clean design?
 
 // move the entire button config into a separate file (buttons.config.ts) so i keep my components ultra-clean and scalable
 /* 
@@ -36,13 +33,20 @@ function App() {
 
   // variant: Is a parameter of the type keyof Counts, , which means it can only be one of the keys (property names) defined in the Counts type.
   const handleClick = (
-    variant:keyof Counts,
+    variant:keyof Counts | "reset",
     increment:number,
   ) => {
+
+    if(variant === "reset") {
+      setCounts({ primary: 0, secondary: 0, danger: 0})
+      return;
+    }
+
     setCounts((prev) => ({
       ...prev,
       [variant]: prev[variant] + increment,
     }));
+    
   }; // inside this function it uses the setCounts function to update the counts state. It does this by creating a new object that spreads the previous counts object (...prev) and then updates the specific property ([variant]) by adding the increment value to the previous value (prev[variant] + increament).
 
   return (
