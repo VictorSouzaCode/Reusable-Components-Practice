@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import ButtonsRow from './newResetButton/ButtonsRow/ButtonsRow'
-import Render from './newResetButton/Render/Render'
+import ButtonsRow from './individualDesable/ButtonsRow/ButtonsRow'
+import Render from './individualDesable/Render/Render'
 
 // i want a way to reset all counts to 0. Instead of making a whole new handler, i can handle "reset" as a special case.
+// Now i case i want to expand this function further i think it would be better to make a separate handler for that
 
 export type Counts = {
   primary: number,
@@ -46,7 +47,7 @@ function App() {
       ...prev,
       [variant]: prev[variant] + increment,
     }));
-    
+
   }; // inside this function it uses the setCounts function to update the counts state. It does this by creating a new object that spreads the previous counts object (...prev) and then updates the specific property ([variant]) by adding the increment value to the previous value (prev[variant] + increament).
 
   return (
