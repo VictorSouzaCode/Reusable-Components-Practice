@@ -6,7 +6,8 @@ type ButtonProps = {
   size?: "sm" | "md" | "lg",
   borders?: "light" | "medium" | "heavy",
   disabled?: boolean,
-  onClick?: (variant : keyof Counts) => void,
+  increment?: number,
+  onClick?: (variant : keyof Counts, increment: number) => void,
   children: React.ReactNode,
 }
 
@@ -14,6 +15,7 @@ const button = ({
   variant = "primary",
   size = "sm",
   borders = "light",
+  increment = 1,
   disabled = false,
   onClick,
   children,
@@ -23,7 +25,7 @@ const button = ({
   const className = `button ${variant} ${size} ${borders}`;
 
   return (
-    <button className={className} onClick={() => onClick?.(variant)} disabled={disabled}>
+    <button className={className} onClick={() => onClick?.(variant, increment)} disabled={disabled}>
       {children}
     </button>
   )
