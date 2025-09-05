@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import ButtonsRow from './components/ButtonsRow/ButtonsRow'
-import Render from './components/Render/Render'
+import ButtonsRow from './useMapForButtons/ButtonsRow/ButtonsRow'
+import Render from './useMapForButtons/Render/Render'
 
 
 export type Counts = {
@@ -8,17 +8,6 @@ export type Counts = {
   secondary: number,
   danger: number,
 }
-
-// Next steps to improve the functions tomorrow in the morning
-/* each button should increment by different amounts (primary +1, secondary +2, danger +3).
-*/
-// update onClick to handle increament
-// update the button component to have a default increament
-// update app with handleClick
-// update ButtonRow
-// with that done You can later make the increments dynamic (props, config file, even random).
-// Buttons remain reusable — each defines its increment value.
-
 
 // Later Difining button config  in an array and mapping it instead of hardcoding each <Button />
 
@@ -45,14 +34,16 @@ function App() {
     danger: 0,
   })
 
+  // variant: Is a parameter of the type keyof Counts, , which means it can only be one of the keys (property names) defined in the Counts type.
   const handleClick = (
-    variant:keyof Counts, increament:number
+    variant:keyof Counts,
+    increment:number,
   ) => {
     setCounts((prev) => ({
       ...prev,
-      [variant]: prev[variant] + increament,
+      [variant]: prev[variant] + increment,
     }));
-  };
+  }; // inside this function it uses the setCounts function to update the counts state. It does this by creating a new object that spreads the previous counts object (...prev) and then updates the specific property ([variant]) by adding the increment value to the previous value (prev[variant] + increament).
 
   return (
     <>

@@ -1,4 +1,5 @@
 import Button from "../Button/Button"
+import { buttonConfig } from "../Ultils/buttonConfig"
 import type { Counts } from "../../App"
 
 type ButtonRowProps = {
@@ -19,19 +20,18 @@ const ButtonsRow = ({
       alignItems: "center",
       }}>
         
-      <Button variant="primary" size="sm" borders='light' onClick={handleClick} increment={2}>
-        Primary
-      </Button>
-
-      <Button variant="secondary" size="md" borders='medium'
-      onClick={handleClick} increment={4}>
-        Secondary
-      </Button>
-
-      <Button variant="danger" size="lg" borders="heavy"
-      onClick={handleClick} increment={6}>
-        Danger
-      </Button>
+      {buttonConfig.map(({ variant, size, borders, increment, label}) => (
+        <Button
+        key={variant}
+        variant={variant}
+        size={size}
+        borders={borders}
+        increment={increment}
+        onClick={handleClick}
+        >
+          {label}
+        </Button>
+      ))}
     </div>
   )
 }
