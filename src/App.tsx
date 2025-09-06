@@ -1,24 +1,13 @@
 import { useState } from 'react'
-import ButtonsRow from './individualDesable/ButtonsRow/ButtonsRow'
-import Render from './individualDesable/Render/Render'
-
-// i want a way to reset all counts to 0. Instead of making a whole new handler, i can handle "reset" as a special case.
-// Now i case i want to expand this function further i think it would be better to make a separate handler for that
+import ButtonsRow from './codeMoreModular/ButtonsRow/ButtonsRow'
+import Render from './codeMoreModular/Render/Render'
+import { buttonConfig } from './codeMoreModular/Ultils/buttonConfig'
 
 export type Counts = {
   primary: number,
   secondary: number,
   danger: number,
 }
-
-// move the entire button config into a separate file (buttons.config.ts) so i keep my components ultra-clean and scalable
-/* 
-Scalable → want a new button? Just add it in buttons.config.ts.
-
-Reusable → same config could be used for a toolbar, menu, or even a test suite.
-
-Separation of concerns → logic (App), rendering (ButtonsRow), and configuration (buttons.config.ts) are all separate.
-*/
 
 // make the Render component automatically adapt to the config (so you don’t have to hardcode "Primary", "Secondary", etc. there either)?
 
@@ -35,17 +24,21 @@ function App() {
   // variant: Is a parameter of the type keyof Counts, , which means it can only be one of the keys (property names) defined in the Counts type.
   const handleClick = (
     variant:keyof Counts | "reset",
-    increment:number,
   ) => {
 
+    // reset count
     if(variant === "reset") {
       setCounts({ primary: 0, secondary: 0, danger: 0})
       return;
     }
 
+    // look up config for the clicked variant
+    const config = buttonConfig.find((btn) => btn.variant === variant);
+    if(!config) return;
+
     setCounts((prev) => ({
       ...prev,
-      [variant]: prev[variant] + increment,
+      [variant]: prev[variant] + config.increment,
     }));
 
   }; // inside this function it uses the setCounts function to update the counts state. It does this by creating a new object that spreads the previous counts object (...prev) and then updates the specific property ([variant]) by adding the increment value to the previous value (prev[variant] + increament).

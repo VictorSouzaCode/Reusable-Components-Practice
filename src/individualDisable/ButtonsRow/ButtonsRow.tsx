@@ -2,6 +2,9 @@ import Button from "../Button/Button"
 import { buttonConfig } from "../Ultils/buttonConfig"
 import type { Counts } from "../../App"
 
+// i want a way to reset all counts to 0. Instead of making a whole new handler, i can handle "reset" as a special case in the app component.
+// and then pass a function here to select what button i want to disable
+
 type ButtonRowProps = {
     handleClick: (variant : keyof Counts | "reset", increament:number) => void,
 }

@@ -3,7 +3,17 @@
 
 // Immutability: When i use as const, TypeScript also treats the entire object as immutable. This means that the properties of the object cannot be changed after it's created. This can be useful if i want to ensure the values don't get accidentally modified later in another file.
 
-export const buttonConfig = [
+import type { Counts } from "../../App";
+
+export type ButtonConfig = {
+  variant: keyof Counts | "reset";
+  size: "sm" | "md" | "lg" | "xl";
+  borders: "light" | "medium" | "heavy";
+  increment: number;
+  label: string;
+};
+
+export const buttonConfig: ButtonConfig[] = [
     { variant: "primary" as const, size: "sm" as const, borders: "light" as const, increment: 2, label: "Primary" },
     { variant: "secondary" as const, size: "md" as const, borders: "medium" as const, increment: 4, label: "Secondary" },
     { variant: "danger" as const, size: "lg" as const, borders: "heavy" as const, increment: 6, label: "Danger" },
