@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import ButtonsRow from './codeMoreModular/ButtonsRow/ButtonsRow'
-import Render from './codeMoreModular/Render/Render'
-import { buttonConfig } from './codeMoreModular/Ultils/buttonConfig'
+import ButtonsRow from './btnConfigJSON/ButtonsRow/ButtonsRow'
+import Render from './btnConfigJSON/Render/Render'
+import { buttonConfig } from './btnConfigJSON/Ultils/buttonConfig'
 
 export type Counts = {
   primary: number,
