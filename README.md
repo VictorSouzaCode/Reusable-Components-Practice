@@ -89,11 +89,3 @@ Exercise:
  Sizes (sm, md, lg)
 
  Disabled state
-
-
----
-
-Mini-Project:
- Build a Card component with slot-like children (header, body, footer).
-
- Use it with different content → blog card, product card, profile card.
